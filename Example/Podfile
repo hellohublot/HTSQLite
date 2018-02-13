@@ -1,0 +1,6 @@
+use_frameworks!
+target 'HTSQLite_Tests' do
+  pod 'HTSQLite', :path => '../'
+  
+  
+end
