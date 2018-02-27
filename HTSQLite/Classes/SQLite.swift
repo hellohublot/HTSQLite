@@ -14,54 +14,143 @@ open class SQLite {
 	
 	open var sqlite: OpaquePointer?
 	
+	open static func cString(_ sString: String?) -> [Int8] {
+		guard let string = sString, string.count > 0 else {
+			return [Int8]()
+		}
+		let c: [Int8] = {
+			if var c = string.cString(using: .utf8) {
+				if c.count > 0 {
+					c.removeLast()
+				}
+				return c
+			} else {
+				let count = string.maximumLengthOfBytes(using: .ascii)
+				var buffer = [Int8].init(repeating: 0, count: count)
+				string.withCString({ start in
+					for i in 0..<count {
+						buffer[i] = start.advanced(by: i).pointee
+					}
+				})
+				return buffer
+			}
+		}()
+		return c
+	}
+	
+	open static func cString(_ data: Data?) -> [Int8] {
+		let count = data?.count ?? 0
+		var buffer = [Int8].init(repeating: 0, count: count)
+		data?.withUnsafeBytes { (start: UnsafePointer<Int8>) in
+			for i in 0..<count {
+				buffer[i] = start.advanced(by: i).pointee
+			}
+		}
+		return buffer
+	}
+	
+	open static func sString(_ point: UnsafeRawPointer?, _ count: Int = -1) -> String {
+		var s: String?
+		if let point = unsafeBitCast(point, to: UnsafePointer<Int8>?.self) {
+			if count < 0 {
+				s = String.init(cString: point, encoding: .utf8)
+			} else {
+				let data = Data.init(bytes: point, count: count)
+				s = String.init(data: data, encoding: .utf8) ?? String.init(data: data, encoding: .ascii)
+			}
+		}
+		return s ?? ""
+	}
+	
 	public init(path: String, create: String? = nil) {
-		let path = path.cString(using: .utf8)
+		let path = type(of: self).cString(path)
 		sqlite3_open(path, &sqlite)
 		if let create = create {
-			execute(create)
+			execute(SQLBind.init(create))
 		}
+	}
+
+	@discardableResult
+	open func execute(_ sql: String) -> [[String:String]]? {
+		return execute(SQLBind.init(sql))
 	}
 	
 	@discardableResult
-	open func select(_ string: String) -> [[String:String]] {
+	open func execute(_ bind: SQLBind) -> [[String:String]]? {
 		guard let pointer = sqlite else {
-			return [[:]]
+			return nil
 		}
-		var result = [[String:String]]()
+		let selfclass = type(of: self)
+		let sql = selfclass.cString(bind.sql)
 		var stmt: OpaquePointer?
-		let sql = string.cString(using: .utf8)
-		if sqlite3_prepare_v2(pointer, sql, -1, &stmt, nil) == SQLITE_OK {
-			while sqlite3_step(stmt) == SQLITE_ROW {
+		
+		
+		guard sqlite3_prepare_v2(pointer, sql, -1, &stmt, nil) == SQLITE_OK else {
+			return nil
+		}
+		
+		var bufferlist = [[Int8]]()
+		
+		for (rekey, value) in bind.list {
+			let index = sqlite3_bind_parameter_index(stmt, SQLite.cString(rekey))
+			var bindresult = SQLITE_OK
+			switch value.self {
+			case let double as Double:
+				bindresult = sqlite3_bind_double(stmt, index, double)
+				break
+			case let int as Int:
+				bindresult = sqlite3_bind_int(stmt, index, Int32(int))
+				break
+			case let data as Data:
+				let buffer = SQLite.cString(data)
+				let count = Int32(buffer.count)
+				bufferlist.append(buffer)
+				bindresult = sqlite3_bind_blob(stmt, index, buffer, count, nil)
+				break
+			case let date as Date:
+				let string = SQLBind.dateformatter.string(from: date)
+				let buffer = SQLite.cString(string)
+				let count = Int32(buffer.count)
+				bufferlist.append(buffer)
+				bindresult = sqlite3_bind_text(stmt, index, buffer, count, nil)
+				break
+			default:
+				let string = "\(value ?? SQLite.nullString)"
+				let buffer = SQLite.cString(string)
+				let count = Int32(buffer.count)
+				bufferlist.append(buffer)
+				bindresult = sqlite3_bind_text(stmt, index, buffer, count, nil)
+				break
+			}
+			guard bindresult == SQLITE_OK else {
+				return nil
+			}
+		}
+		
+		
+		var result: [[String:String]]? = nil
+		let step = sqlite3_step(stmt)
+		if step == SQLITE_DONE {
+			result = [[String:String]]()
+		} else if (step == SQLITE_ROW) {
+			result = [[String:String]]()
+			repeat {
 				let column = sqlite3_column_count(stmt)
 				var dictionary = [String:String]()
 				for i in 0..<column {
 					let name = sqlite3_column_name(stmt, i)
-					let key: String = String(validatingUTF8: name!)!
-					let text = sqlite3_column_text(stmt, i)
-					var value: String?
-					if let text = text {
-						value = String(cString: text)
-						dictionary[key] = value
-					}
+					let key = selfclass.sString(name)
+					let text = sqlite3_column_blob(stmt, i)
+					let count = sqlite3_column_bytes(stmt, i)
+					let value = selfclass.sString(text, Int(count))
+					dictionary[key] = value
 				}
-				result.append(dictionary)
-			}
+				result?.append(dictionary)
+			} while (sqlite3_step(stmt) == SQLITE_ROW)
 		}
+		sqlite3_clear_bindings(stmt)
+		sqlite3_finalize(stmt)
 		return result
-	}
-	
-	@discardableResult
-	open func execute(_ string: String) -> Bool {
-		guard let pointer = sqlite else {
-			return false
-		}
-		let sql = string.cString(using: .utf8)
-		let error: UnsafeMutablePointer<UnsafeMutablePointer<Int8>?>? = nil
-		if sqlite3_exec(pointer, sql, nil, nil, error) == SQLITE_OK {
-			return true
-		} else {
-			return false
-		}
 	}
 	
 	open func close() {
@@ -73,7 +162,120 @@ open class SQLite {
 	
 }
 
+public protocol AllowValue {
+	
+}
+extension String: AllowValue { }
+extension Double: AllowValue { }
+extension Int: AllowValue { }
+extension Data: AllowValue { }
+extension Date: AllowValue { }
+
+open class SQLBind {
+	
+	open let sql: String
+	
+	open let list: [String: AllowValue?]
+	
+	private static var flag = 0
+	
+	public init(_ key: String, _ value: AllowValue?) {
+		let rekey = ":" + "\(type(of: self).flag)" + "_" + key
+		type(of: self).flag += 1
+		self.sql = rekey
+		var list = [String: AllowValue?]()
+		list[rekey] = value
+		self.list = list
+	}
+	
+	public init(_ sql: String) {
+		self.sql = sql
+		self.list = [String: AllowValue?]()
+	}
+	
+	private init(_ sql: String, _ list: [String: AllowValue?]) {
+		self.sql = sql
+		self.list = list
+	}
+	
+	public static func insert(_ dictionary: [String: AllowValue?]) -> SQLBind {
+		guard dictionary.count > 0 else {
+			return SQLBind.init("")
+		}
+		var keyArray = [String]()
+		var valueArray = [String]()
+		var bindlist = [String: AllowValue?]()
+		for (key, value) in dictionary {
+			let bind = SQLBind.init(key, value)
+			if let (rekey, value) = bind.list.first {
+				bindlist[rekey] = value
+				keyArray.append(key)
+				valueArray.append(rekey)
+			}
+		}
+		let keyString = "(" + keyArray.joined(separator: ", ") + ")"
+		let valueString = "(" + valueArray.joined(separator: ", ") + ")"
+		let sql = keyString + " values " + valueString
+		let bind = SQLBind.init(sql, bindlist)
+		return bind
+	}
+	
+	private static func keyValue(_ dictionary: [String: AllowValue?], _ separator: String) -> SQLBind {
+		guard dictionary.count > 0 else {
+			return SQLBind.init("")
+		}
+		var bindlist = [String: AllowValue?]()
+		var keyValueArray = [String]()
+		for (key, value) in dictionary {
+			let bind = SQLBind.init(key, value)
+			if let (rekey, value) = bind.list.first {
+				bindlist[rekey] = value
+				keyValueArray.append("\(key) = " + rekey)
+			}
+		}
+		let sql = keyValueArray.joined(separator: separator)
+		let bind = SQLBind.init(sql, bindlist)
+		return bind
+	}
+	
+	public static func update(_ dictionary: [String: AllowValue?]) -> SQLBind {
+		return keyValue(dictionary, ", ")
+	}
+	
+	public static func whereEqual(_ dictionary: [String: AllowValue?]) -> SQLBind {
+		return keyValue(dictionary, " and ")
+	}
+	
+	public static func + (value: String, other: SQLBind) -> SQLBind {
+		let sql = value + other.sql
+		return SQLBind.init(sql, other.list)
+	}
+	
+	public static func + (this: SQLBind, value: String) -> SQLBind {
+		let sql = this.sql + value
+		return SQLBind.init(sql, this.list)
+	}
+	
+	public static func + (this: SQLBind, other: SQLBind) -> SQLBind {
+		let sql = this.sql + other.sql
+		var list = this.list
+		for (rekey, value) in other.list {
+			list[rekey] = value
+		}
+		return SQLBind.init(sql, list)
+	}
+	
+	public static let dateformatter: DateFormatter = {
+		let dateformatter = DateFormatter()
+		dateformatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
+		return dateformatter
+	}()
+	
+}
+
 extension SQLite {
+	
+	open static let nullString = "null"
 	
 	open class TableColumn {
 		let name: String
@@ -93,7 +295,7 @@ extension SQLite {
 	open func tableInfo(tableName: String) -> [TableColumn] {
 		var columnArray = [TableColumn]()
 		let sql = "pragma table_info('\(tableName)')"
-		let result = select(sql)
+		let result = execute(SQLBind.init(sql)) ?? [[String: String]]()
 		for row in result {
 			let name = row["name"] ?? ""
 			let type = row["type"] ?? ""
@@ -113,62 +315,45 @@ extension SQLite {
 		return columnArray
 	}
 	
-	open func validate(columnArray: [TableColumn], dictionary: [String:String]) -> Bool {
+	open func validate(columnArray: [TableColumn], dictionary: [String: AllowValue?]) -> Bool {
 		for column in columnArray {
-			var value: String?
-			value = dictionary[column.name]
-			if let _ = value {
-			} else {
-				if (column.notnull != 0 && nil == column.dflt_value) {
-					return false
-				}
+			let value = dictionary[column.name] ?? nil
+			var isnull = false
+			if let value = value as? String, value == "null" {
+				isnull = true
+			} else if (value == nil) {
+				isnull = true
+			}
+			if (isnull && column.notnull != 0 && nil == column.dflt_value) {
+				return false
 			}
 		}
 		return true
 	}
 	
-	open func valueFromKey(key: String, dictionary: [String:String]) -> String {
-		var value: String
-		if let text = dictionary[key] {
-			value = "'\(text)'"
-		} else {
-			value = "null"
-		}
-		return value
-	}
-	
 	@discardableResult
-	open func update(tableName: String, columnArray: [TableColumn], dictionary: [String:String]) -> Bool {
+	open func update(tableName: String, columnArray: [TableColumn], dictionary: [String:AllowValue?]) -> Bool {
 		guard validate(columnArray: columnArray, dictionary: dictionary) else {
 			return false
 		}
-		var whereDictionary = [String:String]()
-		var keyValeuDictionary = [String:String]()
+		var whereDictionary = [String:AllowValue?]()
+		var keyValeuDictionary = [String:AllowValue?]()
 		for column in columnArray {
 			let key = column.name
-			let value = valueFromKey(key: key, dictionary: dictionary)
+			let value = dictionary[column.name]
 			keyValeuDictionary[key] = value
 			if column.pk == 1 {
 				whereDictionary[key] = value
 			}
 		}
-		let whereString: String = {
-			var whereString = ""
-			var whereArray = [String]()
-			for (whereKey, whereValue) in whereDictionary {
-				whereArray.append("\(whereKey) = \(whereValue)")
-			}
-			if whereArray.count > 0 {
-				whereString = " where " + whereArray.joined(separator: " and ")
-			}
-			return whereString
-		}()
+		
+		let whereBind = SQLBind.whereEqual(whereDictionary)
 		
 		let existRow: Bool = {
 			var exist = false
-			if whereString.count > 0 {
-				let existSql = "select * from '\(tableName)'" + whereString
-				if (select(existSql)).count > 0 {
+			if whereBind.list.count > 0 {
+				let bind = "select * from \(tableName) where " + whereBind + " limit 1 offset 0"
+				if (execute(bind)?.count ?? 0) > 0 {
 					exist = true
 				}
 			}
@@ -176,35 +361,18 @@ extension SQLite {
 		}()
 		
 		if existRow {
-			let keyValueString: String = {
-				var keyValueString = ""
-				var keyValueArray = [String]()
-				for (key, value) in keyValeuDictionary {
-					keyValueArray.append("\(key) = \(value)")
-				}
-				if keyValueArray.count > 0 {
-					keyValueString = " set " + keyValueArray.joined(separator: ", ")
-				}
-				return keyValueString
-			}()
-			let updateSql = "update '\(tableName)'" + keyValueString + whereString
-			return execute(updateSql)
+			let updateBind = SQLBind.update(keyValeuDictionary)
+			let bind = "update \(tableName) set " + updateBind + " where " + whereBind
+			return execute(bind) != nil
 		} else {
-			var keyArray = [String]()
-			var valueArray = [String]()
-			for (key, value) in keyValeuDictionary {
-				keyArray.append(key)
-				valueArray.append(value)
-			}
-			let keyString = " '\(tableName)' (" + keyArray.joined(separator: ", ") + ")"
-			let valueString = " values (" + valueArray.joined(separator: ", ") + ")"
-			let insertSql = "insert into " + keyString + valueString
-			return execute(insertSql)
+			let insertBind = SQLBind.insert(keyValeuDictionary)
+			let bind = "insert into " + tableName + " " + insertBind
+			return execute(bind) != nil
 		}
 	}
 	
 	@discardableResult
-	open func update(tableName: String, array: [[String:String]]) -> Bool {
+	open func update(tableName: String, array: [[String:AllowValue?]]) -> Bool {
 		let columnArray = tableInfo(tableName: tableName)
 		for dictionary in array {
 			let success = update(tableName: tableName, columnArray: columnArray, dictionary: dictionary)
