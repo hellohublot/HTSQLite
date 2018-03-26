@@ -49,15 +49,10 @@ open class SQLite {
 		return buffer
 	}
 	
-	open static func sString(_ point: UnsafeRawPointer?, _ count: Int = -1) -> String {
+	open static func sString(_ point: UnsafeRawPointer?) -> String {
 		var s: String?
 		if let point = unsafeBitCast(point, to: UnsafePointer<Int8>?.self) {
-			if count < 0 {
-				s = String.init(cString: point, encoding: .utf8)
-			} else {
-				let data = Data.init(bytes: point, count: count)
-				s = String.init(data: data, encoding: .utf8) ?? String.init(data: data, encoding: .ascii)
-			}
+			s = String.init(cString: point, encoding: .utf8)
 		}
 		return s ?? ""
 	}
@@ -72,11 +67,17 @@ open class SQLite {
 
 	@discardableResult
 	open func execute(_ sql: String) -> [[String:String]]? {
-		return execute(SQLBind.init(sql))
+		return execute(SQLBind.init(sql))?.map { datakeyvalue -> [String: String] in
+			var stringkeyvalue = [String: String]()
+			for (key, value) in datakeyvalue {
+				stringkeyvalue[key] = String.init(data: value, encoding: .utf8)
+			}
+			return stringkeyvalue
+		}
 	}
 	
 	@discardableResult
-	open func execute(_ bind: SQLBind) -> [[String:String]]? {
+	open func execute(_ bind: SQLBind) -> [[String:Data]]? {
 		guard let pointer = sqlite else {
 			return nil
 		}
@@ -128,22 +129,24 @@ open class SQLite {
 		}
 		
 		
-		var result: [[String:String]]? = nil
+		var result: [[String:Data]]? = nil
 		let step = sqlite3_step(stmt)
 		if step == SQLITE_DONE {
-			result = [[String:String]]()
+			result = [[String:Data]]()
 		} else if (step == SQLITE_ROW) {
-			result = [[String:String]]()
+			result = [[String:Data]]()
 			repeat {
 				let column = sqlite3_column_count(stmt)
-				var dictionary = [String:String]()
+				var dictionary = [String:Data]()
 				for i in 0..<column {
 					let name = sqlite3_column_name(stmt, i)
 					let key = selfclass.sString(name)
-					let text = sqlite3_column_blob(stmt, i)
+					let blob = sqlite3_column_text(stmt, i)
 					let count = sqlite3_column_bytes(stmt, i)
-					let value = selfclass.sString(text, Int(count))
-					dictionary[key] = value
+					if let blob = blob {
+						let value = Data.init(bytes: blob, count: Int(count))
+						dictionary[key] = value
+					}
 				}
 				result?.append(dictionary)
 			} while (sqlite3_step(stmt) == SQLITE_ROW)
@@ -295,7 +298,7 @@ extension SQLite {
 	open func tableInfo(tableName: String) -> [TableColumn] {
 		var columnArray = [TableColumn]()
 		let sql = "pragma table_info('\(tableName)')"
-		let result = execute(SQLBind.init(sql)) ?? [[String: String]]()
+		let result = execute(sql) ?? [[String: String]]()
 		for row in result {
 			let name = row["name"] ?? ""
 			let type = row["type"] ?? ""
@@ -319,7 +322,7 @@ extension SQLite {
 		for column in columnArray {
 			let value = dictionary[column.name] ?? nil
 			var isnull = false
-			if let value = value as? String, value == "null" {
+			if let value = value as? String, value == SQLite.nullString {
 				isnull = true
 			} else if (value == nil) {
 				isnull = true
