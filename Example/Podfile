@@ -1,0 +1,4 @@
+use_frameworks!
+target 'HTSQLiteExample' do
+	pod 'HTSQLite', :path => '../'
+end

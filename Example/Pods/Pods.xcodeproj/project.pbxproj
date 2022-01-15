@@ -1,0 +1,620 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		19AE43387AC6DC079EA2923AE058673B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		5F6E9CBFC2A89B60F3C957A34828E334 /* HTSQLite-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F07A56A3531A44C95A94E00F69DF1B59 /* HTSQLite-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		614B1F1EE501AAECEE3790FA21BA8917 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		82F76AB3414FB842824D16B5867B8284 /* Pods-HTSQLiteExample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 353591AA9C6836D834407EECDFCBF644 /* Pods-HTSQLiteExample-dummy.m */; };
+		AA97FA66D941F4A5EADA2642EB64D6E3 /* SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44E9A23B2358EF7B2B44986AAB6B24E /* SQLite.swift */; };
+		BC886C90DF3F1B37AD1549D312A78051 /* HTSQLite-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 34DC201FBA935F56008AAFE200115886 /* HTSQLite-dummy.m */; };
+		E1F00DF6211B3F6FB1DB7964C858E8CD /* Pods-HTSQLiteExample-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CC9CB3F94701347C77244AC8B4CF4CEB /* Pods-HTSQLiteExample-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		016704A519E0F3E50B420420861633A5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B86D41A43772FB400AB3DDEFC609DC7B;
+			remoteInfo = HTSQLite;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		03A668D76F675D20FE6F06547E18140B /* HTSQLite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = HTSQLite.debug.xcconfig; sourceTree = "<group>"; };
+		0CD1EA378ABBD8196BBE814CB8DF94CA /* Pods-HTSQLiteExample.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-HTSQLiteExample.modulemap"; sourceTree = "<group>"; };
+		2418E961062107461849A3B9CA231EEC /* HTSQLite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = HTSQLite.release.xcconfig; sourceTree = "<group>"; };
+		2B4129BC1FFD926248B905E71ADE48D9 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		34DC201FBA935F56008AAFE200115886 /* HTSQLite-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "HTSQLite-dummy.m"; sourceTree = "<group>"; };
+		353591AA9C6836D834407EECDFCBF644 /* Pods-HTSQLiteExample-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-HTSQLiteExample-dummy.m"; sourceTree = "<group>"; };
+		551C78819F897D3867DCF802207A042B /* Pods-HTSQLiteExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-HTSQLiteExample.release.xcconfig"; sourceTree = "<group>"; };
+		6851351993CE06A07F91B1430FF2CFF9 /* Pods-HTSQLiteExample-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-HTSQLiteExample-acknowledgements.markdown"; sourceTree = "<group>"; };
+		7008FEECF44B0A3A0B1469519F8404CE /* HTSQLite-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "HTSQLite-Info.plist"; sourceTree = "<group>"; };
+		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		81C0A27F63161FCDD82864823072BE93 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A44E9A23B2358EF7B2B44986AAB6B24E /* SQLite.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SQLite.swift; path = HTSQLite/Classes/SQLite.swift; sourceTree = "<group>"; };
+		B198DEC5F145A4489ABDFBA86DBB521C /* Pods-HTSQLiteExample-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-HTSQLiteExample-acknowledgements.plist"; sourceTree = "<group>"; };
+		BEDC8C416C7CE041B0854B2EF32721E2 /* HTSQLite.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = HTSQLite.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		BF383EAAD709055A6AE137CDC461DE4D /* HTSQLite.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = HTSQLite.modulemap; sourceTree = "<group>"; };
+		C7FCAD240D60B53709FE90CB59C725B4 /* Pods-HTSQLiteExample */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-HTSQLiteExample"; path = Pods_HTSQLiteExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC9CB3F94701347C77244AC8B4CF4CEB /* Pods-HTSQLiteExample-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-HTSQLiteExample-umbrella.h"; sourceTree = "<group>"; };
+		CE966544E8E1CD7568E7365E63079949 /* Pods-HTSQLiteExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-HTSQLiteExample.debug.xcconfig"; sourceTree = "<group>"; };
+		E667EFE7BCBB7E49DEF8C804AFD68962 /* Pods-HTSQLiteExample-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-HTSQLiteExample-frameworks.sh"; sourceTree = "<group>"; };
+		F03B72E46114FACA284DCFC7507A230C /* HTSQLite-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HTSQLite-prefix.pch"; sourceTree = "<group>"; };
+		F07A56A3531A44C95A94E00F69DF1B59 /* HTSQLite-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HTSQLite-umbrella.h"; sourceTree = "<group>"; };
+		F489133D163530ABD3584225FE948F1E /* Pods-HTSQLiteExample-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-HTSQLiteExample-Info.plist"; sourceTree = "<group>"; };
+		FC862289A101CEE025A45432199C52AF /* HTSQLite */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = HTSQLite; path = HTSQLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0D3235D8846B15DF8471549AE2D94B65 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				614B1F1EE501AAECEE3790FA21BA8917 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF89CA3AD5058AFEF064C4D2A0172369 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19AE43387AC6DC079EA2923AE058673B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		35043B0A142B9621AC61AEC541ECD7B3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FC862289A101CEE025A45432199C52AF /* HTSQLite */,
+				C7FCAD240D60B53709FE90CB59C725B4 /* Pods-HTSQLiteExample */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3EF121CB94C6262FFF53DB1BD3487F2D /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				BEDC8C416C7CE041B0854B2EF32721E2 /* HTSQLite.podspec */,
+				81C0A27F63161FCDD82864823072BE93 /* LICENSE */,
+				2B4129BC1FFD926248B905E71ADE48D9 /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		BB6CE021BA11FEAF393C62DC02E02088 /* Pods-HTSQLiteExample */ = {
+			isa = PBXGroup;
+			children = (
+				0CD1EA378ABBD8196BBE814CB8DF94CA /* Pods-HTSQLiteExample.modulemap */,
+				6851351993CE06A07F91B1430FF2CFF9 /* Pods-HTSQLiteExample-acknowledgements.markdown */,
+				B198DEC5F145A4489ABDFBA86DBB521C /* Pods-HTSQLiteExample-acknowledgements.plist */,
+				353591AA9C6836D834407EECDFCBF644 /* Pods-HTSQLiteExample-dummy.m */,
+				E667EFE7BCBB7E49DEF8C804AFD68962 /* Pods-HTSQLiteExample-frameworks.sh */,
+				F489133D163530ABD3584225FE948F1E /* Pods-HTSQLiteExample-Info.plist */,
+				CC9CB3F94701347C77244AC8B4CF4CEB /* Pods-HTSQLiteExample-umbrella.h */,
+				CE966544E8E1CD7568E7365E63079949 /* Pods-HTSQLiteExample.debug.xcconfig */,
+				551C78819F897D3867DCF802207A042B /* Pods-HTSQLiteExample.release.xcconfig */,
+			);
+			name = "Pods-HTSQLiteExample";
+			path = "Target Support Files/Pods-HTSQLiteExample";
+			sourceTree = "<group>";
+		};
+		BC8223E08621D2B4516001E3665F103D /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F50E19E0F97DB7C6B2F2B69A19750AEF /* HTSQLite */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				BC8223E08621D2B4516001E3665F103D /* Development Pods */,
+				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				35043B0A142B9621AC61AEC541ECD7B3 /* Products */,
+				E57000CB321D5DAFB1B117D3F2CDBA3A /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				578452D2E740E91742655AC8F1636D1F /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D795001E74BA2462E5DA433CB3208604 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				BF383EAAD709055A6AE137CDC461DE4D /* HTSQLite.modulemap */,
+				34DC201FBA935F56008AAFE200115886 /* HTSQLite-dummy.m */,
+				7008FEECF44B0A3A0B1469519F8404CE /* HTSQLite-Info.plist */,
+				F03B72E46114FACA284DCFC7507A230C /* HTSQLite-prefix.pch */,
+				F07A56A3531A44C95A94E00F69DF1B59 /* HTSQLite-umbrella.h */,
+				03A668D76F675D20FE6F06547E18140B /* HTSQLite.debug.xcconfig */,
+				2418E961062107461849A3B9CA231EEC /* HTSQLite.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/HTSQLite";
+			sourceTree = "<group>";
+		};
+		E57000CB321D5DAFB1B117D3F2CDBA3A /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				BB6CE021BA11FEAF393C62DC02E02088 /* Pods-HTSQLiteExample */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		F50E19E0F97DB7C6B2F2B69A19750AEF /* HTSQLite */ = {
+			isa = PBXGroup;
+			children = (
+				A44E9A23B2358EF7B2B44986AAB6B24E /* SQLite.swift */,
+				3EF121CB94C6262FFF53DB1BD3487F2D /* Pod */,
+				D795001E74BA2462E5DA433CB3208604 /* Support Files */,
+			);
+			name = HTSQLite;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		2FFFBA832C4BF382C80338C7009DC03D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1F00DF6211B3F6FB1DB7964C858E8CD /* Pods-HTSQLiteExample-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A75E94D7D5F8B4252BFCD53B7BE1586E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F6E9CBFC2A89B60F3C957A34828E334 /* HTSQLite-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		34516C90552C7717D07C58B3B04B9350 /* Pods-HTSQLiteExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6553D25C9FC85604E08D034506FCA00E /* Build configuration list for PBXNativeTarget "Pods-HTSQLiteExample" */;
+			buildPhases = (
+				2FFFBA832C4BF382C80338C7009DC03D /* Headers */,
+				545E0833D2146016465EC9E0FD4122A0 /* Sources */,
+				CF89CA3AD5058AFEF064C4D2A0172369 /* Frameworks */,
+				ED95E5289E4DEF78D0DCBE98E79C9467 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B9B3A92586262F0EA830EC54E17BF2FF /* PBXTargetDependency */,
+			);
+			name = "Pods-HTSQLiteExample";
+			productName = Pods_HTSQLiteExample;
+			productReference = C7FCAD240D60B53709FE90CB59C725B4 /* Pods-HTSQLiteExample */;
+			productType = "com.apple.product-type.framework";
+		};
+		B86D41A43772FB400AB3DDEFC609DC7B /* HTSQLite */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0DE0BFAE04DB86DA52BF84280CE4DD84 /* Build configuration list for PBXNativeTarget "HTSQLite" */;
+			buildPhases = (
+				A75E94D7D5F8B4252BFCD53B7BE1586E /* Headers */,
+				FF928213BD8878E4EE75FEC16C1F59DD /* Sources */,
+				0D3235D8846B15DF8471549AE2D94B65 /* Frameworks */,
+				35AD472661CBF865EE120A6B2FC13CBD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HTSQLite;
+			productName = HTSQLite;
+			productReference = FC862289A101CEE025A45432199C52AF /* HTSQLite */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 35043B0A142B9621AC61AEC541ECD7B3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B86D41A43772FB400AB3DDEFC609DC7B /* HTSQLite */,
+				34516C90552C7717D07C58B3B04B9350 /* Pods-HTSQLiteExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		35AD472661CBF865EE120A6B2FC13CBD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED95E5289E4DEF78D0DCBE98E79C9467 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		545E0833D2146016465EC9E0FD4122A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82F76AB3414FB842824D16B5867B8284 /* Pods-HTSQLiteExample-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF928213BD8878E4EE75FEC16C1F59DD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC886C90DF3F1B37AD1549D312A78051 /* HTSQLite-dummy.m in Sources */,
+				AA97FA66D941F4A5EADA2642EB64D6E3 /* SQLite.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B9B3A92586262F0EA830EC54E17BF2FF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = HTSQLite;
+			target = B86D41A43772FB400AB3DDEFC609DC7B /* HTSQLite */;
+			targetProxy = 016704A519E0F3E50B420420861633A5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2DCA3FA6DEEBF8DF106C1593658114CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 551C78819F897D3867DCF802207A042B /* Pods-HTSQLiteExample.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-HTSQLiteExample/Pods-HTSQLiteExample-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-HTSQLiteExample/Pods-HTSQLiteExample.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		4214E6946993DF02ED98D89047C64016 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		58BF0B735D70ACF97953318A6528248A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03A668D76F675D20FE6F06547E18140B /* HTSQLite.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/HTSQLite/HTSQLite-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/HTSQLite/HTSQLite-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/HTSQLite/HTSQLite.modulemap";
+				PRODUCT_MODULE_NAME = HTSQLite;
+				PRODUCT_NAME = HTSQLite;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6ED3E208476316291F28DAF554C12EBE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE966544E8E1CD7568E7365E63079949 /* Pods-HTSQLiteExample.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-HTSQLiteExample/Pods-HTSQLiteExample-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-HTSQLiteExample/Pods-HTSQLiteExample.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C95ACA4C3F1BBBFB6F8C0B017ED6B086 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2418E961062107461849A3B9CA231EEC /* HTSQLite.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/HTSQLite/HTSQLite-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/HTSQLite/HTSQLite-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/HTSQLite/HTSQLite.modulemap";
+				PRODUCT_MODULE_NAME = HTSQLite;
+				PRODUCT_NAME = HTSQLite;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		CD85FD90473CFBE797E4264E7BBC70AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0DE0BFAE04DB86DA52BF84280CE4DD84 /* Build configuration list for PBXNativeTarget "HTSQLite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				58BF0B735D70ACF97953318A6528248A /* Debug */,
+				C95ACA4C3F1BBBFB6F8C0B017ED6B086 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4214E6946993DF02ED98D89047C64016 /* Debug */,
+				CD85FD90473CFBE797E4264E7BBC70AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6553D25C9FC85604E08D034506FCA00E /* Build configuration list for PBXNativeTarget "Pods-HTSQLiteExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6ED3E208476316291F28DAF554C12EBE /* Debug */,
+				2DCA3FA6DEEBF8DF106C1593658114CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}
