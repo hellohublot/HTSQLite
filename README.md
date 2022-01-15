@@ -1,6 +1,6 @@
 - 对 sqlite3 进行封装, 直接传字典，绑定到 sql 上，包括 blob 数据也可以绑定到 sql 上面
 - 支持 updateOrInsert
-- 支持事务
+- 支持事务 transaction
 
 ## Usage
 
