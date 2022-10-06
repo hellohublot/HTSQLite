@@ -1,10 +1,12 @@
-- 对 sqlite3 进行了封装, 直接传字典，绑定到 sql 上，包括 blob 数据也可以绑定到 sql 上面
-- 支持 updateOrInsert
-- 支持事务 transaction
+## Features
+
+- The sqlite3 is encapsulated, the dictionary is directly passed, and bound to sql, including blob data can also be bound to sql
+- support updateOrInsert
+- Support transaction transaction
 
 ## Usage
 
-[点击查看完整示例 Example](./Example/HTSQLiteExample/HTDataManager.swift)
+[Example](./Example/HTSQLiteExample/HTDataManager.swift)
 
 ```ruby
 pod 'HTSQLite', :git => 'https://github.com/hellohublot/HTSQLite.git'
